@@ -1,11 +1,11 @@
-const { Transictions } = require('../db/models')
+const { Transactions } = require('../db/models')
 
 
 
-async function getAllTransictions() {
+async function  getAllTransactions() {
     try {
-        let transiction = await  Transictions.findAll()
-        return transiction
+        let transaction = await  Transactions.findAll()
+        return transaction 
     }
 
     catch (err) {
@@ -14,11 +14,11 @@ async function getAllTransictions() {
     }
 }
 
-async function  createTransiction(productName,cost){
+async function  createTransactions(productName,cost){
     try{
-        await  Transictions.create({
+        await  Transactions.create({
             productName : productName,
-            transictionCost : cost 
+            transactionCost : cost 
         })
         
     }
@@ -29,6 +29,6 @@ async function  createTransiction(productName,cost){
 }
 
 module.exports = {
-    getAllTransictions,
-    createTransiction
+    getAllTransactions,
+    createTransactions
 }

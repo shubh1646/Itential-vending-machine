@@ -1,19 +1,19 @@
 const { Router } = require('express')
 
-const { getAllTransictions } = require('../../controllers/machine')
+const { getAllTransactions } = require('../../controllers/machine')
 
 
 const route = Router()
 
 
-route.get('/', async (req, res) => {
+route.get('/transactions', async (req, res) => {
 
     try {
-        const transictions = await getAllTransictions()
-        if (transiction.length != 0)
-            res.status(200).send(transictions)
+        const transactions = await getAllTransactions()
+        if (transactions.length != 0)
+            res.status(200).send(transactions)
 
-        res.status(400).send("No transiction found ")
+        res.status(400).send("No transactions found ")
     }
 
 

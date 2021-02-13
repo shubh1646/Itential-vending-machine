@@ -1,7 +1,7 @@
 
 const { Sodas } = require('../db/models')
 
-const { createTransiction } = require('./machine')
+const { createTransactions } = require('./machine')
 
 
 
@@ -67,7 +67,7 @@ async function buySoda(name) {
         if (updatedSoda.quantityAvailable == 0)
             return 'Out of Stock'
         newQuantity = updatedSoda.quantityAvailable - 1;
-        await createTransiction(name, updatedSoda.cost)
+        await createTransactions(name, updatedSoda.cost)
         await Sodas.update(
             { quantityAvailable: newQuantity }, {
             where: {
