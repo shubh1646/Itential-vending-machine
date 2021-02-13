@@ -45,11 +45,11 @@ route.post('/login', async (req, res) => {
             return res.status(400).send('Password is not correct')
 
 
-            var privateKey = config.token
+        var privateKey = config.token
 
-            var token = jwt.sign({ user: userId }, privateKey)
-            res.header('auth-token', token)
-            res.status(200).send('User Logged in ! ' + token)
+        var token = jwt.sign({ user: userId }, privateKey)
+        res.header('auth-token', token)
+        res.status(200).send('User Logged in ! ' + token)
     }
 
     catch (err) {

@@ -1,14 +1,13 @@
 
 const { Sodas } = require('../db/models')
 
+const { createTransiction } = require('./machine')
 
 
 
-
-//create a prodcut
 async function createSoda(name, description, cost, quantity) {
     try {
-        
+
         const soda = await Sodas.create({
             productName: name,
             description: description,
@@ -52,6 +51,7 @@ async function getSodaByName(name) {
 
             }
         })
+        return soda
     }
     catch (err) {
         console.log(err)
@@ -59,21 +59,26 @@ async function getSodaByName(name) {
     }
 }
 
-async function buySoda(name){
-try{
-    let updatedSoda  = getSodaByName(name)
-    if(!updatedSoda)
-        return updatedSoda
-    newQuantity = updatedSoda.quantityAvailable-1;
-    let updatedSoda = await Sodas.update(
-        {productName : updatedSoda.productName},{
-            where : {
-                quantityAvailable : newQuantity
+async function buySoda(name) {
+    try {
+        let updatedSoda = await getSodaByName(name)
+        if (!updatedSoda)
+            return updatedSoda
+        if (updatedSoda.quantityAvailable == 0)
+            return 'Out of Stock'
+        newQuantity = updatedSoda.quantityAvailable - 1;
+        await createTransiction(name, updatedSoda.cost)
+        await Sodas.update(
+            { quantityAvailable: newQuantity }, {
+            where: {
+                productName: updatedSoda.productName
+
             }
         }
-    )
-    return updatedSoda
-}
+        )
+
+        return updatedSoda
+    }
     catch (err) {
         console.log(err)
         return " { Error   : DB error  could not update Soda quantity  } "

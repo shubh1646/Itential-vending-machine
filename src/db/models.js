@@ -39,6 +39,25 @@ const Admins = db.define('admin', {
 })
 
 
+
+const Transictions = db.define('transiction', {
+    productName: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false
+    },
+    transictionCost: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false
+    }
+})
+
+
+Sodas.hasMany(Transictions, {
+    foreignKey: 'productName'
+});
+
+
+
 //{force:true}
 
 db.sync()
@@ -56,5 +75,6 @@ db.authenticate()
 
 module.exports = {
     Admins,
-    Sodas
+    Sodas,
+    Transictions
 }

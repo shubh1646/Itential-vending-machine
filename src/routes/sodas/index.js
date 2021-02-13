@@ -44,6 +44,7 @@ route.get('/name/:name', async (req, res) => {
             req.status(500).send("Need product name for search ")
 
         let soda = await getSodaByName(productName)
+
         if (!soda)
             res.status(400).send({
                 error: 'No soda found with this name'
@@ -67,11 +68,11 @@ route.post('/', async (req, res) => {
         let price = req.body.cost
         let quantityAvailable = req.body.quantity
         if (!productName)
-            res.status(500).send("Need Soda  name")
+            res.status(500).send("Need Soda  sodaName")
         if (!description)
             res.status(500).send("Need Soda  description")
         if (!price)
-            res.status(500).send("Need Soda price ")
+            res.status(500).send("Need Soda Cost")
         if (!quantityAvailable)
             res.status(500).send("Need Soda quantity")
 
@@ -86,13 +87,19 @@ route.post('/', async (req, res) => {
     }
 })
 
-route.put('/price/:name', async (req, res) => {
+route.put('/price/:sodaname', async (req, res) => {
     try {
         let price = req.body.cost
-        let name = req.params.name
+        let name = req.params.sodaname
+        if (!name)
+            res.status(500).send("Need Soda  sodaName")
         let soda = await getSodaByName(name)
+
         if (!soda)
             res.status(401).send("Could not find any soda of this name")
+        if (!price)
+            res.status(500).send("Need Soda Cost")
+
         await updateSodaPrice(name, price)
 
 
@@ -108,19 +115,25 @@ route.put('/price/:name', async (req, res) => {
 })
 
 
-route.put('/quantity/:name', async (req, res) => {
+route.put('/quantity/:sodaname', async (req, res) => {
 
     try {
-        let name = req.params.name
+        let name = req.params.sodaname
         let quantity = req.body.quantity
-        let soda = await getSodaByName(name)
-        if (!soda)
-            res.status(401).send("Could not find any soda of this name")
 
+        if (!quantity)
+            res.status(500).send("Need Soda quantity for update")
+
+        let soda = await getSodaByName(name)
+
+        if (!soda) {
+            console.log(soda)
+            res.status(404).send("Could not find any soda of this name")
+        }
         await updateSodaQuantity(name, quantity)
 
 
-        res.status(201).send("Soda price is updated")
+        res.status(201).send("Soda quantity is updated")
 
     }
 
@@ -133,14 +146,22 @@ route.put('/quantity/:name', async (req, res) => {
 
 })
 
-route.put('/buy/:name', async (req, res) => {
+route.put('/buy/:sodaname', async (req, res) => {
     try {
-        let name = req.params.name
-        let updatedSoda = buySoda(name)
+        let name = req.params.sodaname
+        let updatedSoda = await buySoda(name)
         if (!updatedSoda)
             res.status(401).send("Could not find any soda of this name")
 
-        res.status(200).send(updatedSoda)
+        if (updatedSoda === 'Out of Stock')
+            res.status(404).send("Sorry We are out of stock with this soda")
+
+
+        res.json({
+            ProductName: updatedSoda.productName,
+            Description: updatedSoda.description,
+            Cost: updatedSoda.cost
+        })
     }
 
     catch (err) {
