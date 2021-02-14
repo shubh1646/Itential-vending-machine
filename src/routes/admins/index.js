@@ -4,13 +4,17 @@ const { createAdmin,
     deleteAdmin,
     getAdmin } = require('../../controllers/admin')
 
+
+const validate = require('../../utils/validation')
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const route = Router()
+var jwt = require('jsonwebtoken');
 
 route.post('/', async (req, res) => {
     try {
         let email = req.body.email
+        let password = req.body.password
         if (!email)
             return res.status(400).send('Please enter email Id')
         if (!password)
@@ -31,10 +35,12 @@ route.post('/login', async (req, res) => {
     try {
         let email = req.body.email
         let password = req.body.password
-        if (!email)
-            return res.status(400).send('Please enter email Id')
-        if (!password)
-            return res.status(400).send('Please enter password')
+        const error  = validate(req.body)
+      
+        if (error){
+           
+            return res.status(400).send(error.details[0].message)
+        } 
 
         let user = await getAdmin(email)
         if (!user)

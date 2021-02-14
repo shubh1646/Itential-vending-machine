@@ -14,6 +14,7 @@ async function createSoda(name, description, cost, quantity) {
             cost: cost,
             quantityAvailable: quantity
         })
+        console.log(soda)
         return soda
     }
 
@@ -125,12 +126,29 @@ async function updateSodaQuantity(name, quantity) {
     }
 }
 
+
+async function deleteSoda(name){
+    try{
+        await Sodas.destroy({
+            where: {
+                productName: name
+            }
+        });
+
+    }
+    catch (err) {
+        console.log(err)
+       return " { Error   : DB error  could not delete Soda   } "
+}
+}
+
 module.exports = {
     getSodaByName,
     getAllSodas,
     createSoda,
     updateSodaPrice,
     updateSodaQuantity,
-    buySoda
+    buySoda,
+    deleteSoda
 
 }
