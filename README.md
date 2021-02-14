@@ -24,7 +24,15 @@ src
 ```
 ### Frontend (Client Side code)
 ```
-
+public/
+├── css
+│   └── style.css                   # css file for styling
+├── images
+│   └── banner.gif
+├── index.html                      #main HTML file
+└── js
+    ├── jquery.js                   #Jquery
+    └── script.js                   # custom js file 
 
 
 ```
@@ -86,7 +94,7 @@ src
          Change the quantity Available of a given soda
          Required Fields in body :
            quantity :
-    6. Put /api/sodas//buy/:sodaname
+    6. Put /api/sodas/buy/:sodaname
         Buy the soda 
 
 ### Machine 
