@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Iceberg&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Iceberg&display=swap');
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: sans-serif;
+    background-color: #f4f9f9;
+  }
+  
+  
+  .container {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 50px 10px;
+  }
+
+  
+  .vending-machine {
+    margin-left: 20%;
+    height: 900px;
+    width: 600px;
+    border: 1px solid black;
+    background-color: #b71540;
+    padding: 10px;
+    border-radius: 10px;
+    float: left;
+    box-shadow: 0 20px 10px -10px rgba(0,0,0,0.7);
+  }
+ 
+  header h1 {
+    height: 50px;
+    line-height: 50px;
+    background-color:  #323131;;
+    border: 2px solid #222;
+    border-radius: 5px;
+    font-family: 'Iceberg', cursive;
+    color: #a4ebf3;
+    text-align: center;
+
+  }
+  
+  .main {
+    background-color: #b71540;
+    border: 2px solid #222;
+    border-radius: 8px;
+    display: flex;
+    align-content: stretch;
+    height: 600px;
+  }
+  
+  .item-inventory {
+   
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    
+  
+  }
+  
+
+  .controls {
+    background-color: #f6b93b;
+    width: 250px;
+    text-align: center;
+  }
+  
+  .display {
+    height: 70px;
+    line-height: 65px;
+    font-size: 25px;
+    background-color: #222;
+    color:#05c46b;
+    border: 1px solid #fff;
+    text-align: center;
+    font-family: 'Patrick Hand', cursive;
+    font-weight: bold;
+    margin: 10px;
+  }
+  
+  .display span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 32px;
+  }
+  
+ 
+  
+  .keypad {
+    margin: 30px 0;
+  }
+  
+  .keypad ul {
+    list-style-type: none;
+    margin: 8%;
+    padding: 20px;
+  }
+  
+  .keypad button {
+    height: 70px;
+    width: 130px;
+    margin-top: 10px;
+    font-size: 25px;
+    background-color: #82ccdd;
+    font-family: 'Dancing Script', cursive;
+    border-radius: 5px;
+    box-shadow: 0px 4px 2px rgba(0,0,0,0.3);
+  }
+  
+  .keypad button:active {
+    background-color: green;
+    transform: translate(5px,5px);
+    box-shadow: gray  5px 5px 8px;
+    transition : 0.3s;
+}
+  
+  footer {
+    margin: 30px 0;
+  }
+  
+  .vend-slot {
+    height: 100px;
+    width: 300px;
+    background-color: #3f3f44;
+    margin:  auto;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+  }
+  
+  
+  
+  

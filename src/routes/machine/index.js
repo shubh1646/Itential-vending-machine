@@ -10,8 +10,10 @@ route.get('/transactions', async (req, res) => {
 
     try {
         const transactions = await getAllTransactions()
-        if (transactions.length != 0)
+        if (transactions.length != 0) {
             res.status(200).send(transactions)
+        }
+
 
         res.status(400).send("No transactions found ")
     }
@@ -27,7 +29,7 @@ route.get('/transactions', async (req, res) => {
 
 
 module.exports = {
-    machineRoute : route
+    machineRoute: route
 }
 
 

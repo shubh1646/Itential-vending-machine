@@ -14,7 +14,7 @@ const { machineRoute } = require('./routes/machine')
 app.use('/api/sodas', sodasRoute)
 app.use('/api/admin', adminRoute)
 app.use('/api/machine', machineRoute)
-
+app.use('/', express.static(__dirname + '/public'))
 app.listen(process.env.PORT || 4000, () => {
     console.log("application is running on htttp://localhost:4000")
 })
