@@ -1,0 +1,25 @@
+version: "3.9"
+services: 
+  api-server:
+    image : "vernding-server:latest"
+    ports: 
+      - 4000:4000
+    networks: 
+      - node-app
+    depends_on: 
+      - sql
+  sql:
+    image : mysql:latest
+    ports: 
+      - 3306:3306
+    networks: 
+      - node-app
+    environment: 
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=vendinguser
+      - MYSQL_PASSWORD=vendingpass
+      - MYSQL_DATABASE=vendingdb
+      - MYSQL_DIALECT=mysql
+networks: 
+  node-app:
+    driver: bridge

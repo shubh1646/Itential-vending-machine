@@ -55,7 +55,7 @@ public/
         Create a new Admin 
         
             Required Fields in body :
-            emailId :
+            email :
             password :
         
      2. Post api/admin/login 
