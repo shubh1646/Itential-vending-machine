@@ -90,6 +90,7 @@ public/
         Buy the soda 
 
 ### Machine 
+
     1.  Get /api/machine/transactions       (Auth)
         Get details of transiction done in vending machine 
 
@@ -108,7 +109,6 @@ RUN docker compose up -d
 2. Login using email n password 
 2. It will return a JWT Token , Use that token as auth-token as header in order to use authorize ids
 3. Initially database is empty, Create new sodas using Post /api/sodas/
-
-
+Application will run at http://localhost:4000/
 '''
 

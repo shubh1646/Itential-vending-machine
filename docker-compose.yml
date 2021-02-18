@@ -13,6 +13,7 @@ services:
       - MYSQL_PASSWORD=vendingpass
       - MYSQL_DATABASE=vendingdb
       - MYSQL_DIALECT=mysql
+      - MYSQL_HOST=mysql
   api-server:
     image : "vernding-server:latest"
     ports: 

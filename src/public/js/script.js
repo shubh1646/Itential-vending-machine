@@ -27,6 +27,10 @@ $(function () {
     })
     loadSodas()
 
+    setTimeout(function(){
+        location.reload();
+    },10000);
+
 })
 
 
@@ -56,3 +60,4 @@ function onDownload(jsonData, sodaName) {
 
     download(JSON.stringify(jsonData), `${sodaName}.txt`, "text/plain");
 }
+
