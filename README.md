@@ -37,14 +37,6 @@ public/
 
 ```
 
-## Business Logic
-
-
-
-
-
-
-
 
 ## API Documentation 
 
@@ -62,7 +54,7 @@ public/
          Login for admin 
            
             Required Fields in body :
-            emailId :
+            email :
             password :
         
      3. Delete /api/admin/:email
@@ -77,7 +69,7 @@ public/
     2. Get /api/sodas/name/:name
         Get details of soda with a given name 
 
-    3. Post /api/sodas/
+    3. Post /api/sodas/   (Auth)
         Create a new soda 
         Required Fields in body :
             sodaName :
@@ -85,34 +77,38 @@ public/
             cost :
             qunatity:  
 
-    4. Put /api/sodas/price/:sodaname
+    4. Put /api/sodas/price/:sodaname   (Auth)
          Change the price of a given soda 
          Required Fields in body :
             cost :
 
-    5. Put /api/sodas/quantity/:sodaname
+    5. Put /api/sodas/quantity/:sodaname     (Auth)
          Change the quantity Available of a given soda
          Required Fields in body :
            quantity :
-    6. Put /api/sodas/buy/:sodaname
+    6. Put /api/sodas/buy/:sodaname          
         Buy the soda 
 
 ### Machine 
-    1.  Get /api/machine/transictions
+    1.  Get /api/machine/transactions       (Auth)
         Get details of transiction done in vending machine 
 
 
+### Prerequisite
+must have docker set up and running on your system
+
 
 '''
+git clone the project
+cd Itential-vending-machine 
+RUN:  docker build -t vernding-server .
+RUN docker compose up -d
 
-If running on system 
-1. Install mysql 
-2. $ mysql -u root
-3. run these commands :
-    * create database vendingdb;
-    * create user vendinguser identified by 'vendingpass';
-    * grant all privileges on vendingdb.* to vendinguser;
-    * flush privileges;
+1. Create admin 
+2. Login using email n password 
+2. It will return a JWT Token , Use that token as auth-token as header in order to use authorize ids
+3. Initially database is empty, Create new sodas using Post /api/sodas/
+
 
 '''
 

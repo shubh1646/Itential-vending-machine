@@ -30,6 +30,7 @@ async function getAdmin(email) {
             }
 
         })
+        return user;
     }
 
     catch (err) {

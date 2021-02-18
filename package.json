@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=testing mocha test/**/*.js",
-    "cover": "nyc --reporter=html npm run test"
+    "cover": "nyc --reporter=html npm run test",
+    "start"  : "node src/server.js"
   },
   "author": "",
   "license": "ISC",

@@ -30,6 +30,7 @@ const Sodas = db.define('soda', {
 const Admins = db.define('admin', {
     emailId: {
         type: Sequelize.DataTypes.STRING,
+        primaryKey: true,
         allowNull: false
     },
     password: {

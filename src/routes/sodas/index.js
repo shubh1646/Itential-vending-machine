@@ -12,7 +12,7 @@ const { getSodaByName,
 
 
 const route = Router()
-
+const auth = require('../../utils/auth')
 
 route.get('/getAll', async (req, res) => {
     try {
@@ -61,7 +61,7 @@ route.get('/name/:name', async (req, res) => {
 })
 
 
-route.post('/', async (req, res) => {
+route.post('/', auth, async (req, res) => {
     try {
         let productName = req.body.sodaName
         let description = req.body.description
@@ -87,7 +87,7 @@ route.post('/', async (req, res) => {
     }
 })
 
-route.put('/price/:sodaname', async (req, res) => {
+route.put('/price/:sodaname', auth, async (req, res) => {
     try {
         let price = req.body.cost
         let name = req.params.sodaname
@@ -99,7 +99,8 @@ route.put('/price/:sodaname', async (req, res) => {
             res.status(401).send("Could not find any soda of this name")
         if (!price)
             res.status(500).send("Need Soda Cost")
-
+        if (price <= 0)
+            res.status(500).send("Need Valid Cost for update")
         await updateSodaPrice(name, price)
 
 
@@ -115,7 +116,7 @@ route.put('/price/:sodaname', async (req, res) => {
 })
 
 
-route.put('/quantity/:sodaname', async (req, res) => {
+route.put('/quantity/:sodaname', auth, async (req, res) => {
 
     try {
         let name = req.params.sodaname
@@ -123,7 +124,8 @@ route.put('/quantity/:sodaname', async (req, res) => {
 
         if (!quantity)
             res.status(500).send("Need Soda quantity for update")
-
+        if (quantity <= 0)
+            res.status(500).send("Need Valid quantity for update")
         let soda = await getSodaByName(name)
 
         if (!soda) {

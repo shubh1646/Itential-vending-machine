@@ -2,11 +2,11 @@ const { Router } = require('express')
 
 const { getAllTransactions } = require('../../controllers/machine')
 
-
+const  auth  = require('../../utils/auth')
 const route = Router()
 
 
-route.get('/transactions', async (req, res) => {
+route.get('/transactions',auth, async (req, res) => {
 
     try {
         const transactions = await getAllTransactions()
